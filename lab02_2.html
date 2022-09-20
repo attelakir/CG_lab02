@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+		<canvas id = 'lab02' width="500" height="500" style="border: 1px solid black;"/>
+		<script>
+			let canvas = document.getElementById('lab02');
+			let context = canvas.getContext('2d');
+			
+			let i = 0;
+			
+			var img = new Image();
+			img.src = "./myImage.png";
+			
+			img.onload = function () {
+						setInterval(draw, 50);
+			}
+			
+			function draw (){
+				context.clearRect(0,0,canvas.width, canvas.height);
+				context.drawImage(img,250,200,100,100,250,200-i,100,100);
+				context.drawImage(img,150,200,100,100,150,200+i,100,100);
+				++i;
+			}
+				
+			</script>
+</body>
+</html>

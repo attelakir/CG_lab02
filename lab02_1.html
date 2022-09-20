@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+		<a href="" download="myImage.png" class="button" id="btn-download" onclick="download_img(this);">Click to download</a>
+		<canvas id = 'lab02' width="500" height="500" style="border: 1px solid black;"/>
+
+
+		<script>
+			let canvas = document.getElementById('lab02');
+			let context = canvas.getContext('2d');
+			
+			function triangle() {
+			var data = context.getImageData(0, 0, canvas.width, canvas.height);
+			let k = 0;
+
+			for (var j=0; j<100; j++) {
+					for (var i=0; i<j*2+1; i++) {
+						data.data[500*4*(200+j)+(250+i-k)*4] = 255;
+						data.data[500*4*(200+j)+(250+i-k)*4+2] = 128;
+						data.data[500*4*(200+j)+(250+i-k)*4+3] = 255;
+					}
+					++k;
+			}
+			
+			context.putImageData(data, 0, 0);
+			};
+			
+			triangle()
+			
+			download_img = function(el) {
+				  var imageURL = canvas.toDataURL(1);
+				  el.href = imageURL;
+				};
+				
+			</script>
+</body>
+</html>
